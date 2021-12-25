@@ -10,6 +10,7 @@
   --primary-color: #31385f;
   --white: #fff;
   --orange: #ff3b0f;
+  --error: #ff6f4f;
   --green: #00b678;
   --blue: #5458e1;
   --purple: #00bbdd;
@@ -22,6 +23,32 @@ body {
   font-size: 15px;
   line-height: 1.5;
   overflow-x: hidden;
+}
+
+.error-message {
+  color: var(--error);
+  font-size: 12px;
+}
+
+.primary-button {
+  color: white;
+  background-color: var(--primary-color);
+}
+
+.primary-color {
+  color: var(--primary-color);
+}
+
+.spinner {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.primary-button-outline {
+  border: 1px solid var(--primary-color);
+  background-color: white;
 }
 
 a,
@@ -116,7 +143,7 @@ label {
 }
 
 .users-tabs .nav-tabs .nav-link {
-  width: 250px;
+  width: 305px;
   text-align: center;
   border: 1px solid var(--primary-color);
   color: var(--primary-color);

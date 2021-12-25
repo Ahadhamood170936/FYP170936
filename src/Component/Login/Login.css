@@ -163,7 +163,7 @@ body * {
   background: rgba(255, 255, 255, 0.2);
 }
 
-label {
+.loginContainer label {
   font-weight: 400;
   text-transform: uppercase;
   font-size: 13px;
