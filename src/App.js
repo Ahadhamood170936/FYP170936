@@ -15,6 +15,9 @@ import NewStudent from "./Component/Users/NewStudent";
 import StudentLogin from "./Component/Student/Login/Login";
 import StudentDashboard from "./Component/Student/Dashboard/Dashboard";
 
+import TeacherLogin from "./Component/Teacher/Login/Login";
+import TeacherDashboard from "./Component/Teacher/Dashboard/Dashboard";
+
 import "./App.css";
 
 function App() {
@@ -49,6 +52,20 @@ function App() {
               element={<Navigate replace to="/student/dashboard" />}
             />
             <Route path="/student/dashboard" element={<StudentDashboard />} />
+          </Routes>
+        )
+      ) : activeApp === "/teacher" ? (
+        !teacher ? (
+          <Routes>
+            <Route exact path="/teacher" element={<TeacherLogin />} />
+          </Routes>
+        ) : (
+          <Routes>
+            <Route
+              path="/teacher"
+              element={<Navigate replace to="/teacher/dashboard" />}
+            />
+            <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
           </Routes>
         )
       ) : !admin ? (

@@ -12,6 +12,30 @@ export const loginAdmin = async (email, pass) => {
   }
 };
 
+export const loginTeacher = async (email, pass) => {
+  const dbRef = await firestore
+    .collection("teachers")
+    .where("email", "==", email)
+    .where("password", "==", pass)
+    .get();
+
+  if (dbRef.docs.length > 0) {
+    const data = dbRef.docs[0].data();
+
+    localStorage.setItem("election-teacher", JSON.stringify(data));
+    return true;
+  } else {
+    alert("Invalid Credentials");
+    return false;
+  }
+};
+
+export const teacherApplyForElection = async (id, candidates) => {
+  await firestore.collection("electionPositions").doc(id).update({
+    candidates,
+  });
+};
+
 export const createTeacher = async (data) => {
   const ref = await firestore.collection("teachers").doc();
 
@@ -76,4 +100,33 @@ export const getStudents = async () => {
     students.push(item.data());
   });
   return students;
+};
+
+export const getTeachersPositions = async () => {
+  const ref = await firestore.collection("electionPositions").get();
+
+  const pos = [];
+  ref.docs.forEach((item) => {
+    pos.push(item.data());
+  });
+  return pos;
+};
+
+export const setElectionSetting = async (
+  name,
+  status,
+  formSubmissionDate,
+  startingDate,
+  endingDate
+) => {
+  const ref = await firestore.collection("electionPositions").doc(name);
+
+  await ref.update({
+    name,
+    formSubmissionDate,
+    startingDate,
+    endingDate,
+    status,
+    candidates: [],
+  });
 };
